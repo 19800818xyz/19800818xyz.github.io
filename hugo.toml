@@ -72,29 +72,24 @@ buildExpired = false
   # -----------------------------
   # 首页右侧挂件（搜索 / 归档 / 分类 / 标签云）
   # -----------------------------
-  [params.widgets.homepage]
-    [[params.widgets.homepage.pages]]
-      type = "search"
+  [[params.widgets.homepage]]
+    type = "search"
 
-    [[params.widgets.homepage.pages]]
-      type = "archives"
-      [params.widgets.homepage.pages.params]
-        limit = 5
+  [[params.widgets.homepage]]
+    type = "archives"
+    params = { limit = 5 }
 
-    [[params.widgets.homepage.pages]]
-      type = "categories"
-      [params.widgets.homepage.pages.params]
-        limit = 10
+  [[params.widgets.homepage]]
+    type = "categories"
+    params = { limit = 10 }
 
-    [[params.widgets.homepage.pages]]
-      type = "tag-cloud"
-      [params.widgets.homepage.pages.params]
-        limit = 10
+  [[params.widgets.homepage]]
+    type = "tag-cloud"
+    params = { limit = 10 }
 
   # 文章页右侧挂件
-  [params.widgets.page]
-    [[params.widgets.page.pages]]
-      type = "toc"
+  [[params.widgets.page]]
+    type = "toc"
 
   # -----------------------------
   # 评论：Giscus（基于 GitHub Discussions）
