@@ -1,0 +1,261 @@
+# ==================================================================
+# AI 碎碎念 · Hugo + Stack 配置文件
+# 官方文档: https://stack.jimmycai.com/config/
+# ==================================================================
+
+baseurl = "https://19800818xyz.github.io/"
+languageCode = "zh-cn"
+DefaultContentLanguage = "zh-cn"
+title = "AI 碎碎念"
+theme = "hugo-theme-stack"
+
+# 中日韩语言需要开启，保证摘要截断正确
+hasCJKLanguage = true
+
+# 网站稳健性配置
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+# 分页：首页每页显示 5 篇
+[pagination]
+  pagerSize = 5
+
+# URL 结构：文章访问 /p/文章slug/，独立页面访问 /页面slug/
+[permalinks]
+  post = "/p/:slug/"
+  page = "/:slug/"
+
+# ------------------------------------------------------------------
+# [params] Stack 主题的核心参数
+# ------------------------------------------------------------------
+[params]
+  mainSections = ["post"]
+  featuredImageField = "image"
+  rssFullContent = true
+  favicon = ""
+
+  [params.footer]
+    since = 2026
+    customText = "记录一个产品经理走向 AI 的学习轨迹"
+
+  [params.dateFormat]
+    published = "2006-01-02"
+    lastUpdated = "2006-01-02 15:04"
+
+  # -----------------------------
+  # 左侧边栏（Stack 招牌区域）
+  # -----------------------------
+  [params.sidebar]
+    emoji = "🧠"
+    subtitle = "记录一个产品经理走向 AI 的学习轨迹"
+
+    [params.sidebar.avatar]
+      enabled = true
+      local = true
+      # 把你的头像放到 assets/img/avatar.png
+      src = "img/avatar.png"
+
+  # -----------------------------
+  # 文章页设置
+  # -----------------------------
+  [params.article]
+    math = true          # ← 开启 KaTeX 数学公式
+    toc = true           # 文章目录
+    readingTime = true   # 阅读时间估计
+
+    [params.article.license]
+      enabled = true
+      default = "本文采用 CC BY-NC-SA 4.0 许可协议，转载请注明来源。"
+
+  # -----------------------------
+  # 首页右侧挂件（搜索 / 归档 / 分类 / 标签云）
+  # -----------------------------
+  [params.widgets.homepage]
+    [[params.widgets.homepage.pages]]
+      type = "search"
+
+    [[params.widgets.homepage.pages]]
+      type = "archives"
+      [params.widgets.homepage.pages.params]
+        limit = 5
+
+    [[params.widgets.homepage.pages]]
+      type = "categories"
+      [params.widgets.homepage.pages.params]
+        limit = 10
+
+    [[params.widgets.homepage.pages]]
+      type = "tag-cloud"
+      [params.widgets.homepage.pages.params]
+        limit = 10
+
+  # 文章页右侧挂件
+  [params.widgets.page]
+    [[params.widgets.page.pages]]
+      type = "toc"
+
+  # -----------------------------
+  # 评论：Giscus（基于 GitHub Discussions）
+  # -----------------------------
+  # 📌 使用前需要先做 3 件事（详见 README.md "第 8 步"）：
+  #   1. 在 GitHub 仓库设置里开启 Discussions
+  #   2. 安装 https://github.com/apps/giscus 到你的仓库
+  #   3. 到 https://giscus.app 配置，把生成的 4 个 ID 填到下面
+  [params.comments]
+    enabled = true
+    provider = "giscus"
+
+    [params.comments.giscus]
+      repo = "19800818xyz/19800818xyz.github.io"
+      repoID = "REPLACE_WITH_REPO_ID"          # ← 去 giscus.app 获取
+      category = "Announcements"
+      categoryID = "REPLACE_WITH_CATEGORY_ID"  # ← 去 giscus.app 获取
+      mapping = "pathname"
+      lightTheme = "light"
+      darkTheme = "dark_dimmed"
+      reactionsEnabled = "1"
+      emitMetadata = "0"
+      inputPosition = "bottom"
+      lang = "zh-CN"
+      lazyLoading = true
+
+  # -----------------------------
+  # 配色 / 暗黑模式
+  # -----------------------------
+  [params.colorScheme]
+    toggle = true
+    default = "auto"  # auto / light / dark
+
+  # -----------------------------
+  # 图片处理
+  # -----------------------------
+  [params.imageProcessing]
+    [params.imageProcessing.cover]
+      enabled = true
+    [params.imageProcessing.content]
+      enabled = true
+
+  # -----------------------------
+  # OpenGraph（分享到微信/Twitter 时的预览卡片）
+  # -----------------------------
+  [params.opengraph.twitter]
+    site = ""
+    card = "summary_large_image"
+
+  [params.defaultImage.opengraph]
+    enabled = false
+    local = false
+    src = ""
+
+# ------------------------------------------------------------------
+# 主菜单
+# ------------------------------------------------------------------
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 1
+    [menu.main.params]
+      icon = "home"
+
+  [[menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 2
+    [menu.main.params]
+      icon = "archives"
+
+  [[menu.main]]
+    identifier = "categories"
+    name = "分类"
+    url = "/categories/"
+    weight = 3
+    [menu.main.params]
+      icon = "categories"
+
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 4
+    [menu.main.params]
+      icon = "tag"
+
+  [[menu.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search/"
+    weight = 5
+    [menu.main.params]
+      icon = "search"
+
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 6
+    [menu.main.params]
+      icon = "user"
+
+  # 侧边栏社交图标（点头像下方）
+  [[menu.social]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/19800818xyz"
+    [menu.social.params]
+      icon = "brand-github"
+
+  [[menu.social]]
+    identifier = "email"
+    name = "Email"
+    url = "mailto:jiming.gao@neargo.ai"
+    [menu.social.params]
+      icon = "mail"
+
+# ------------------------------------------------------------------
+# 相关文章
+# ------------------------------------------------------------------
+[related]
+  includeNewer = true
+  threshold = 60
+  toLower = false
+
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+
+  [[related.indices]]
+    name = "categories"
+    weight = 200
+
+# ------------------------------------------------------------------
+# Markdown / 语法高亮
+# ------------------------------------------------------------------
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # 允许 Markdown 内嵌 HTML（Stack 主题依赖此项）
+      unsafe = true
+
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false          # 行号默认关，文章里 {linenos=true} 单独打开
+    tabWidth = 2
+
+# ------------------------------------------------------------------
+# 输出格式：额外开启 JSON 以支持站内搜索
+# ------------------------------------------------------------------
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

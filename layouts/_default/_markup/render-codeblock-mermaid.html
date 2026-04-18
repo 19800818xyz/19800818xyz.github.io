@@ -1,0 +1,9 @@
+{{/*
+  Mermaid 代码块渲染钩子：
+  在文章里使用 ```mermaid ... ``` 代码块时，
+  会被渲染成 <pre class="mermaid"> 块，由前端的 mermaid.js 接管绘制。
+*/}}
+<pre class="mermaid">
+{{- .Inner | safeHTML }}
+</pre>
+{{ .Page.Store.Set "hasMermaid" true }}

@@ -1,0 +1,16 @@
+{{/*
+  Mermaid 懒加载：
+  只有当本页面实际使用了 ```mermaid 代码块时才加载 mermaid.js。
+  与主题默认 footer 并存，不会覆盖 Stack 原有的 footer 结构。
+*/}}
+{{ if .Store.Get "hasMermaid" }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  const isDark = document.documentElement.dataset.scheme === 'dark';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: isDark ? 'dark' : 'default',
+    securityLevel: 'loose'
+  });
+</script>
+{{ end }}
