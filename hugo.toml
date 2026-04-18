@@ -210,13 +210,6 @@ buildExpired = false
     [menu.social.params]
       icon = "brand-github"
 
-  [[menu.social]]
-    identifier = "email"
-    name = "Email"
-    url = "mailto:jiming.gao@neargo.ai"
-    [menu.social.params]
-      icon = "mail"
-
 # ------------------------------------------------------------------
 # 相关文章
 # ------------------------------------------------------------------
