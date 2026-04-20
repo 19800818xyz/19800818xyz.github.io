@@ -1,0 +1,59 @@
+/* ==================================================================
+   AI 碎碎念 · 自定义美化方案
+   ================================================================== */
+
+:root {
+    --card-border-radius: 16px;
+    --accent-color: #6366f1; /* 现代紫色 */
+    --accent-color-rgb: 99, 102, 241;
+}
+
+/* 1. 侧边栏及卡片毛玻璃效果 */
+.sidebar {
+    background-color: rgba(var(--card-background-rgb), 0.7) !important;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+.article-card, .widget, .menu {
+    border-radius: var(--card-border-radius) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease !important;
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 2. 增强标签云观感 */
+.tag-cloud a {
+    background: rgba(var(--accent-color-rgb), 0.1) !important;
+    color: var(--accent-color) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 4px 10px !important;
+    transition: all 0.2s ease !important;
+}
+
+.tag-cloud a:hover {
+    background: var(--accent-color) !important;
+    color: #fff !important;
+    transform: scale(1.05);
+}
+
+/* 3. 字体与间距微调 */
+body {
+    font-family: "Inter", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.article-title {
+    line-height: 1.4 !important;
+    font-weight: 700 !important;
+}
+
+/* 4. 隐藏可能冲突的默认元素 */
+.menu-item-search + .menu-item-search, 
+.menu-item-about + .menu-item-about {
+    display: none !important;
+}
