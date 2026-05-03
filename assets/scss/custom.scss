@@ -6,6 +6,8 @@
     --card-border-radius: 16px;
     --accent-color: #6366f1; /* 现代紫色 */
     --accent-color-rgb: 99, 102, 241;
+    --menu-icon-separation: 10px; /* 修复：默认 40px 导致图标与文字间距过大 */
+    --tag-border-radius: 20px;    /* 修复：标签改为胶囊形 */
 }
 
 /* 1. 侧边栏及卡片毛玻璃效果 */
@@ -25,20 +27,48 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* 2. 增强标签云观感 */
-.tag-cloud a {
-    background: rgba(var(--accent-color-rgb), 0.1) !important;
+/* 2. 标签云 — 修正选择器（Stack 用驼峰 .tagCloud），改为胶囊 pill 样式 */
+.tagCloud .tagCloud-tags a {
+    background: rgba(var(--accent-color-rgb), 0.08) !important;
     color: var(--accent-color) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    padding: 4px 10px !important;
+    border: 1px solid rgba(var(--accent-color-rgb), 0.2) !important;
+    border-radius: 20px !important;
+    padding: 3px 12px !important;
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
     transition: all 0.2s ease !important;
 }
 
-.tag-cloud a:hover {
+.tagCloud .tagCloud-tags a:hover {
     background: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
     color: #fff !important;
-    transform: scale(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--accent-color-rgb), 0.3) !important;
+}
+
+/* 2b. 分类 widget 标签同样胶囊化 */
+.widget--categories .widget-categories--list a,
+.categories-tags-cloud a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(var(--accent-color-rgb), 0.06) !important;
+    color: var(--card-text-color-main) !important;
+    border: 1px solid rgba(var(--accent-color-rgb), 0.15) !important;
+    border-radius: 20px !important;
+    padding: 3px 12px !important;
+    font-size: 1.2rem !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.widget--categories .widget-categories--list a:hover,
+.categories-tags-cloud a:hover {
+    background: rgba(var(--accent-color-rgb), 0.15) !important;
+    border-color: var(--accent-color) !important;
+    color: var(--accent-color) !important;
 }
 
 /* 3. 字体与间距微调 */
@@ -52,8 +82,8 @@ body {
     font-weight: 700 !important;
 }
 
-/* 4. 隐藏可能冲突的默认元素 */
-.menu-item-search + .menu-item-search, 
-.menu-item-about + .menu-item-about {
+/* 4. 隐藏重复菜单项（Stack 主题会渲染两次 search / about） */
+#main-menu li:has(a[href="/search/"]) ~ li:has(a[href="/search/"]),
+#main-menu li:has(a[href="/about/"]) ~ li:has(a[href="/about/"]) {
     display: none !important;
 }
